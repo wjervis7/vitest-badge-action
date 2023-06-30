@@ -47,7 +47,7 @@ const core = __importStar(__nccwpck_require__(2186));
 const tsyringe_1 = __nccwpck_require__(1069);
 const summary_1 = __nccwpck_require__(8608);
 const threshold_1 = __nccwpck_require__(7610);
-let CoverageReport = class CoverageReport {
+let CoverageReport = exports.CoverageReport = class CoverageReport {
     _threshold;
     _summary;
     _options;
@@ -110,12 +110,11 @@ let CoverageReport = class CoverageReport {
         return this._summary.results.total[testType];
     }
 };
-CoverageReport = __decorate([
+exports.CoverageReport = CoverageReport = __decorate([
     (0, tsyringe_1.autoInjectable)(),
     __param(0, (0, tsyringe_1.inject)("options")),
     __metadata("design:paramtypes", [Object])
 ], CoverageReport);
-exports.CoverageReport = CoverageReport;
 
 
 /***/ }),
