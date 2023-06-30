@@ -5,7 +5,10 @@
     "parserOptions": {
       "ecmaVersion": 9,
       "sourceType": "module",
-      "project": "./tsconfig.json"
+      "project": [
+        "./tsconfig.json",
+        "./tsconfig.tests.json"
+      ]
     },
     "rules": {
       "i18n-text/no-en": "off",
@@ -29,7 +32,6 @@
       "@typescript-eslint/no-inferrable-types": "error",
       "@typescript-eslint/no-misused-new": "error",
       "@typescript-eslint/no-namespace": "error",
-      "@typescript-eslint/no-non-null-assertion": "warn",
       "@typescript-eslint/no-unnecessary-qualifier": "error",
       "@typescript-eslint/no-unnecessary-type-assertion": "error",
       "@typescript-eslint/no-useless-constructor": "error",
@@ -44,6 +46,14 @@
       "@typescript-eslint/type-annotation-spacing": "error",
       "@typescript-eslint/unbound-method": "error"
     },
+    "overrides": [
+      {
+        "files": ["__tests__/*.tests.ts"],
+        "rules": {
+          "no-console": "off"
+        }
+      }
+    ],
     "env": {
       "node": true,
       "es6": true,

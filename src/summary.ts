@@ -5,9 +5,9 @@ import { IFs } from "./types/fs";
 
 const fs = container.resolve<IFs>("fs");
 
-export type testType = "lines" | "branches" | "functions" | "statements";
+export type TestType = "lines" | "branches" | "functions" | "statements";
 
-interface ReportNumbers {
+export interface ReportNumbers {
     total: number;
     covered: number;
     skipped: number;

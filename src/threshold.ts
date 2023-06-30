@@ -11,11 +11,18 @@ const regexLines = /lines:\s*(\d+)/;
 const regexBranches = /branches\s*:\s*(\d+)/;
 const regexFunctions = /functions\s*:\s*(\d+)/;
 
+const defaultThreshold = {
+    lines: 100,
+    branches: 100,
+    functions: 100,
+    statements: 100
+};
+
 export class Threshold {
-    lines?: number;
-    branches?: number;
-    functions?: number;
-    statements?: number;
+    lines = defaultThreshold.lines;
+    branches = defaultThreshold.branches;
+    functions = defaultThreshold.functions;
+    statements = defaultThreshold.statements;
 
     static async parse(vitestConfigPath: string): Promise<Threshold> {
         try {
@@ -36,15 +43,28 @@ export class Threshold {
             const functions = rawContent.match(regexFunctions);
             const statements = rawContent.match(regexStatements);
 
-            return {
-                lines: lines ? parseInt(lines[1]) : undefined,
-                branches: branches ? parseInt(branches[1]) : undefined,
-                functions: functions ? parseInt(functions[1]) : undefined,
-                statements: statements ? parseInt(statements[1]) : undefined
-            };
+            const threshold = new Threshold();
+
+            if (lines) {
+                threshold.lines = parseInt(lines[1]);
+            }
+
+            if (branches) {
+                threshold.branches = parseInt(branches[1]);
+            }
+
+            if (functions) {
+                threshold.functions = parseInt(functions[1]);
+            }
+
+            if (statements) {
+                threshold.statements = parseInt(statements[1]);
+            }
+
+            return threshold;
         } catch (err: unknown) {
             core.warning(`Unable to parse vitest config file:\n ${err}`);
-            return {};
+            return defaultThreshold;
         }
     }
 }
