@@ -1,11 +1,83 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: "Vitest Badge Action"
+description: "Provide a description here"
+author: "wjervis7"
 inputs:
-  milliseconds: # change this
+  result-type:
+    description: "Type of result to make badge for. Can be 'lines', 'statements', 'functions', or 'branches'."
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  upload-badge:
+    description: "Indicate if badge should be uploaded to Gist."
+    default: true
+  badge-path:
+    description: "Path to save the temporary badge to."
+    default: "badge.svg"
+  gist-token:
+    description: "PAT for writing to gist."
+  gist-url:
+    description: "Url to Gist."
+  vitest-config-path:
+    description: "Path to the vitest config file."
+    default: "vitest.config.ts"
+  summary-path:
+    description: "Path to the json summary file."
+    default: "./coverage/coverage-summary.json"
+  badge-text:
+    description: "Text to display on badge."
+    default: "Tests"
+  badge-pass-color:
+    description: "Color of the badge, when tests have passed."
+    default: "#31c653"
+  badge-fail-color:
+    description: "Color of the badge, when tests have failed, or, coverage is below the threshold."
+    default: "#800000"
+  badge-neutral-color:
+    description: "Color of the badge, when test results were not found."
+    default: "#696969"
+outputs:
+  status:
+    description: "Summary results as pass/fail/neutral."
+    value: ${{ steps.action.outputs.status }}
+  percentage:
+    description: "Summary results as percentage."
+    value: ${{ steps.action.outputs.percentage }}
+  covered:
+    description: "Summary results as covered/total."
+    value: ${{ steps.action.outputs.covered }}
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "composite"
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: Action
+      id: action
+      run: node ${{ github.action_path }}/dist/index.js
+      shell: bash
+      env:
+        INPUT_RESULT-TYPE: ${{ inputs.result-type }}
+        INPUT_VITEST-CONFIG-PATH: ${{ inputs.vitest-config-path }}
+        INPUT_SUMMARY-PATH: ${{ inputs.summary-path }}
+        INPUT_BADGE-PASS-COLOR: ${{ inputs.badge-pass-color }}
+        INPUT_BADGE-FAIL-COLOR: ${{ inputs.badge-fail-color }}
+        INPUT_BADGE-NEUTRAL-COLOR: ${{ inputs.badge-neutral-color }}
+
+    - name: Create Badge
+      uses: emibcn/badge-action@v2.0.2
+      with:
+        label: ${{ inputs.badge-text }}
+        status: "${{ steps.action.outputs.percentage }} (${{ steps.action.outputs.covered }})"
+        color: ${{ steps.action.outputs.color }}
+        path: ${{ inputs.badge-path }}
+
+    - name: Upload badge to Gist
+      if: ${{ inputs.upload-badge == true }}
+      uses: andymckay/append-gist-action@0.2
+      with:
+        token: ${{ inputs.gist_token }}
+        gistUrl: ${{ inputs.gist_url }}
+        file: ${{ inputs.badge-path }}
+
+
+
