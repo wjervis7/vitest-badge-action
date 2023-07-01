@@ -16,6 +16,7 @@ export class CoverageReport {
     }
 
     async setup(): Promise<void> {
+        core.debug("Entering CoverageReport.setup")
         this._threshold = await Threshold.parse(this._options.vitestConfigPath);
         this._summary = await Summary.parse(this._options.summaryPath);
     }
