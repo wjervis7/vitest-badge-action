@@ -17,12 +17,30 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "fs",
-        "node:path"
+        "node:path",
+        "os",
+        "path",
+        "https",
+        "net",
+        "tls",
+        "http",
+        "events",
+        "assert",
+        "util"
       ],
       output: {
         globals: {
           fs: "fs",
-          "node:path": "node:path"
+          "node:path": "node:path",
+          os: "os",
+          path: "path",
+          https: "https",
+          net: "net",
+          tls: "tls",
+          http: "http",
+          events: "events",
+          assert: "assert",
+          util: "util"
         }
       }
     }
