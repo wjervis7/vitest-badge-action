@@ -6,13 +6,15 @@
     "src/**/*.d.ts"
   ],
   "exclude": [
-    "**/__tests__/*"
+    "src/**/__tests__/*"
   ],
   "ts-node": {
     "files": true
   },
   "compilerOptions": {
     "composite": true,
+    "moduleResolution": "bundler",
+    "module": "ESNext",
     "baseUrl": ".",
     "paths": {
       "@/*": [

@@ -8,7 +8,7 @@ export default mergeConfig(
   defineConfig({
     test: {
       environment: 'node',
-      exclude: [...configDefaults.exclude, 'e2e/*', "__tests__/main.tests.ts"],
+      exclude: [...configDefaults.exclude, 'e2e/*', "src/__tests__/main.tests.ts"],
       root: fileURLToPath(new URL('./', import.meta.url)),
       coverage: {
         provider: "istanbul",
