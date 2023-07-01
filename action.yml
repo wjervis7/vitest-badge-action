@@ -78,9 +78,6 @@ runs:
       if: ${{ inputs.upload-badge == 'true' }}
       uses: andymckay/append-gist-action@0.2
       with:
-        token: ${{ inputs.gist_token }}
-        gistUrl: ${{ inputs.gist_url }}
+        token: ${{ inputs.gist-token }}
+        gistUrl: ${{ inputs.gist-url }}
         file: ${{ inputs.badge-path }}
-
-
-
