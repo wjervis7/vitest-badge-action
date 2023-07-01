@@ -45,3 +45,4 @@ jobs:
         with:
           file_pattern: './dist/'
           push_options: '--force'
+          skip_dirty_check: true    
