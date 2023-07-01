@@ -1,19 +1,17 @@
 import * as core from "@actions/core";
-import { autoInjectable, inject } from "tsyringe";
-import { ReportNumbers, Summary, TestType } from "./summary";
-import { Threshold } from "./threshold";
-import { IOptions } from "./options";
-import { ICoverageResult } from "./coverageResult";
+import { ReportNumbers, Summary, TestType } from "@/summary";
+import { Threshold } from "@/threshold";
+import { IOptions } from "@/options";
+import { ICoverageResult } from "@/coverageResult";
 
 export type Result = "pass" | "fail" | "neutral";
 
-@autoInjectable()
 export class CoverageReport {
     private _threshold?: Threshold;
     private _summary?: Summary;
     private _options: IOptions;
 
-    constructor(@inject("options") options: IOptions) {
+    constructor(options: IOptions) {
         this._options = options;
     }
 

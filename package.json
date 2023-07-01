@@ -2,15 +2,15 @@
   "name": "vitest-badge-action",
   "version": "0.0.0",
   "description": "A GitHub Action to parse vitest coverage results, and generate a badge",
-  "main": "lib/main.js",
+  "main": "dist/main.js",
+  "type": "module",
   "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "format": "prettier --write '**/*.ts'",
-    "format-check": "prettier --check '**/*.ts'",
+    "build": "vite build",
+    "format:fix": "prettier --write '**/*.ts'",
+    "format": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
-    "package": "ncc build --source-map --license licenses.txt",
-    "test": "jest --passWithNoTests",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "test": "vitest",
+    "test-action": "node __tests__/main.tests.js"
   },
   "repository": {
     "type": "git",
@@ -28,21 +28,22 @@
     "setup"
   ],
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "reflect-metadata": "^0.1.13",
-    "tsyringe": "^4.8.0"
+    "@actions/core": "^1.10.0"
   },
   "devDependencies": {
+    "@rushstack/eslint-patch": "^1.3.2",
+    "@tsconfig/node18": "^18.2.0",
     "@types/node": "^20.3.3",
     "@typescript-eslint/parser": "^5.60.1",
     "@vercel/ncc": "^0.36.1",
+    "@vitest/coverage-istanbul": "^0.32.2",
+    "@vitest/ui": "^0.32.2",
     "eslint": "^8.43.0",
     "eslint-plugin-github": "^4.8.0",
     "eslint-plugin-jest": "^27.2.1",
-    "jest": "^29.5.0",
-    "js-yaml": "^4.1.0",
     "prettier": "^2.8.8",
-    "ts-jest": "^29.1.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9",
+    "vitest": "^0.32.2"
   }
 }

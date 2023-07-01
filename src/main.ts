@@ -1,25 +1,12 @@
 import * as core from "@actions/core";
-import "reflect-metadata";
-import { promises } from "fs";
-
-import { container } from "tsyringe";
-import { Threshold } from "./threshold";
-import { IFs } from "./types/fs";
-import { IOptions, readOptions } from "./options";
-import { Summary } from "./summary";
-import { CoverageReport } from "./coverageReport";
+import { readOptions } from "@/options";
+import { CoverageReport } from "@/coverageReport";
 
 async function run(): Promise<void> {
     try {
-        const options = await readOptions();
+        const options = readOptions();
 
-        container.register<IOptions>("options", { useValue: options });
-        container.register<IFs>("fs", { useValue: promises });
-        container.register<Threshold>(Threshold, { useClass: Threshold });
-        container.register<Summary>(Summary, { useClass: Summary });
-        container.register<CoverageReport>(CoverageReport, { useClass: CoverageReport });
-
-        const report = container.resolve<CoverageReport>(CoverageReport);
+        const report = new CoverageReport(options);
 
         await report.setup();
 

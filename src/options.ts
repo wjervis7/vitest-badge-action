@@ -1,5 +1,5 @@
 import * as core from "@actions/core";
-import { TestType } from "./summary";
+import { TestType } from "@/summary";
 
 export interface IOptions {
     resultType: TestType;
@@ -10,7 +10,7 @@ export interface IOptions {
     badgeNeutralColor: string;
 }
 
-export async function readOptions(): Promise<IOptions> {
+export function readOptions(): IOptions {
     const resultType = core.getInput("result-type") as TestType;
     const summaryPath = core.getInput("summary-path");
     const vitestConfigPath = core.getInput("vitest-config-path");
