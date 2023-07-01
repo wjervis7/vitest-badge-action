@@ -4,6 +4,7 @@ import { CoverageReport } from "@/coverageReport";
 
 async function run(): Promise<void> {
     try {
+        core.debug("entering main");
         const options = readOptions();
 
         const report = new CoverageReport(options);
@@ -16,6 +17,8 @@ async function run(): Promise<void> {
         core.setOutput("percentage", results.percentage);
         core.setOutput("covered", results.covered);
         core.setOutput("color", results.color);
+
+        core.debug("exiting");
     } catch (error) {
         if (error instanceof Error) core.setFailed(error.message);
     }
