@@ -17,13 +17,11 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "fs",
-        "@actions/core",
         "node:path"
       ],
       output: {
         globals: {
           fs: "fs",
-          "@actions/core": "@actions/core",
           "node:path": "node:path"
         }
       }
