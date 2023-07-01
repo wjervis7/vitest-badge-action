@@ -75,7 +75,7 @@ runs:
         path: ${{ inputs.badge-path }}
 
     - name: Upload badge to Gist
-      if: ${{ inputs.upload-badge == true }}
+      if: ${{ inputs.upload-badge == 'true' }}
       uses: andymckay/append-gist-action@0.2
       with:
         token: ${{ inputs.gist_token }}
