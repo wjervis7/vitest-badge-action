@@ -4,7 +4,7 @@ var o = (r, t, s) => (f(r, typeof t != "symbol" ? t + "" : t, s), s);
 import * as e from "@actions/core";
 import g from "node:path";
 import { promises as m } from "fs";
-async function y() {
+function y() {
   const r = e.getInput("result-type"), t = e.getInput("summary-path"), s = e.getInput("vitest-config-path"), n = e.getInput("badge-pass-color"), a = e.getInput("badge-fail-color"), u = e.getInput("badge-neutral-color");
   return {
     resultType: r,
@@ -31,7 +31,7 @@ class b {
     }
   }
 }
-const w = /100"?\s*:\s*true/, v = /statements\s*:\s*(\d+)/, _ = /lines:\s*(\d+)/, C = /branches\s*:\s*(\d+)/, I = /functions\s*:\s*(\d+)/, i = {
+const v = /100"?\s*:\s*true/, w = /statements\s*:\s*(\d+)/, _ = /lines:\s*(\d+)/, C = /branches\s*:\s*(\d+)/, I = /functions\s*:\s*(\d+)/, i = {
   lines: 60,
   branches: 60,
   functions: 60,
@@ -47,14 +47,14 @@ class l {
   static async parse(t) {
     try {
       const s = g.resolve(process.cwd(), t), n = await m.readFile(s, "utf8");
-      if (n.match(w))
+      if (n.match(v))
         return {
           lines: 100,
           branches: 100,
           functions: 100,
           statements: 100
         };
-      const a = n.match(_), u = n.match(C), h = n.match(I), p = n.match(v), c = new l();
+      const a = n.match(_), u = n.match(C), h = n.match(I), p = n.match(w), c = new l();
       return a && (c.lines = parseInt(a[1])), u && (c.branches = parseInt(u[1])), h && (c.functions = parseInt(h[1])), p && (c.statements = parseInt(p[1])), e.debug(`Threshold: ${JSON.stringify(c)}`), c;
     } catch (s) {
       return e.warning(`Unable to parse vitest config file:
@@ -114,7 +114,7 @@ class P {
 }
 async function O() {
   try {
-    const r = await y(), t = new P(r);
+    const r = y(), t = new P(r);
     await t.setup();
     const s = t.results(r.resultType);
     e.setOutput("status", s.status), e.setOutput("percentage", s.percentage), e.setOutput("covered", s.covered), e.setOutput("color", s.color);
