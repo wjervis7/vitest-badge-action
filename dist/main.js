@@ -291,11 +291,11 @@ function Dt(e) {
       g[O] = u[m][O];
     for (var R = 16; R < 80; ++R)
       g[R] = Oe(g[R - 3] ^ g[R - 8] ^ g[R - 14] ^ g[R - 16], 1);
-    for (var P = t[0], I = t[1], G = t[2], N = t[3], U = t[4], F = 0; F < 80; ++F) {
-      var Y = Math.floor(F / 20), z = Oe(P, 5) + Nt(Y, I, G, N) + U + r[Y] + g[F] >>> 0;
-      U = N, N = G, G = Oe(I, 30) >>> 0, I = P, P = z;
+    for (var P = t[0], N = t[1], G = t[2], D = t[3], U = t[4], F = 0; F < 80; ++F) {
+      var Y = Math.floor(F / 20), z = Oe(P, 5) + Nt(Y, N, G, D) + U + r[Y] + g[F] >>> 0;
+      U = D, D = G, G = Oe(N, 30) >>> 0, N = P, P = z;
     }
-    t[0] = t[0] + P >>> 0, t[1] = t[1] + I >>> 0, t[2] = t[2] + G >>> 0, t[3] = t[3] + N >>> 0, t[4] = t[4] + U >>> 0;
+    t[0] = t[0] + P >>> 0, t[1] = t[1] + N >>> 0, t[2] = t[2] + G >>> 0, t[3] = t[3] + D >>> 0, t[4] = t[4] + U >>> 0;
   }
   return [t[0] >> 24 & 255, t[0] >> 16 & 255, t[0] >> 8 & 255, t[0] & 255, t[1] >> 24 & 255, t[1] >> 16 & 255, t[1] >> 8 & 255, t[1] & 255, t[2] >> 24 & 255, t[2] >> 16 & 255, t[2] >> 8 & 255, t[2] & 255, t[3] >> 24 & 255, t[3] >> 16 & 255, t[3] >> 8 & 255, t[3] & 255, t[4] >> 24 & 255, t[4] >> 16 & 255, t[4] >> 8 & 255, t[4] & 255];
 }
@@ -611,13 +611,13 @@ var rr = oe;
     v.BadGateway,
     v.ServiceUnavailable,
     v.GatewayTimeout
-  ], P = ["OPTIONS", "GET", "DELETE", "HEAD"], I = 10, G = 5;
-  class N extends Error {
+  ], P = ["OPTIONS", "GET", "DELETE", "HEAD"], N = 10, G = 5;
+  class D extends Error {
     constructor(d, c) {
-      super(d), this.name = "HttpClientError", this.statusCode = c, Object.setPrototypeOf(this, N.prototype);
+      super(d), this.name = "HttpClientError", this.statusCode = c, Object.setPrototypeOf(this, D.prototype);
     }
   }
-  e.HttpClientError = N;
+  e.HttpClientError = D;
   class U {
     constructor(d) {
       this.message = d;
@@ -866,7 +866,7 @@ var rr = oe;
     }
     _performExponentialBackoff(d) {
       return o(this, void 0, void 0, function* () {
-        d = Math.min(I, d);
+        d = Math.min(N, d);
         const c = G * Math.pow(2, d);
         return new Promise((l) => setTimeout(() => l(), c));
       });
@@ -896,7 +896,7 @@ var rr = oe;
           if (b > 299) {
             let $;
             A && A.message ? $ = A.message : E && E.length > 0 ? $ = E : $ = `Failed request: (${b})`;
-            const M = new N($, b);
+            const M = new D($, b);
             M.result = S.result, y(M);
           } else
             l(S);
@@ -1015,15 +1015,15 @@ function ir() {
       function g(P) {
         try {
           R(h.next(P));
-        } catch (I) {
-          m(I);
+        } catch (N) {
+          m(N);
         }
       }
       function O(P) {
         try {
           R(h.throw(P));
-        } catch (I) {
-          m(I);
+        } catch (N) {
+          m(N);
         }
       }
       function R(P) {
@@ -1098,24 +1098,24 @@ function Ie() {
         });
       }
       return new (m || (m = Promise))(function(R, P) {
-        function I(U) {
+        function N(U) {
           try {
-            N(g.next(U));
+            D(g.next(U));
           } catch (F) {
             P(F);
           }
         }
         function G(U) {
           try {
-            N(g.throw(U));
+            D(g.throw(U));
           } catch (F) {
             P(F);
           }
         }
-        function N(U) {
-          U.done ? R(U.value) : O(U.value).then(I, G);
+        function D(U) {
+          U.done ? R(U.value) : O(U.value).then(N, G);
         }
-        N((g = g.apply(v, a || [])).next());
+        D((g = g.apply(v, a || [])).next());
       });
     };
     Object.defineProperty(e, "__esModule", { value: !0 }), e.summary = e.markdownSummary = e.SUMMARY_DOCS_URL = e.SUMMARY_ENV_VAR = void 0;
@@ -1261,7 +1261,7 @@ function Ie() {
           const R = O.map((P) => {
             if (typeof P == "string")
               return this.wrap("td", P);
-            const { header: I, data: G, colspan: N, rowspan: U } = P, F = I ? "th" : "td", Y = Object.assign(Object.assign({}, N && { colspan: N }), U && { rowspan: U });
+            const { header: N, data: G, colspan: D, rowspan: U } = P, F = N ? "th" : "td", Y = Object.assign(Object.assign({}, D && { colspan: D }), U && { rowspan: U });
             return this.wrap(F, G, Y);
           }).join("");
           return this.wrap("tr", R);
@@ -1290,8 +1290,8 @@ function Ie() {
        * @returns {Summary} summary instance
        */
       addImage(a, m, g) {
-        const { width: O, height: R } = g || {}, P = Object.assign(Object.assign({}, O && { width: O }), R && { height: R }), I = this.wrap("img", null, Object.assign({ src: a, alt: m }, P));
-        return this.addRaw(I).addEOL();
+        const { width: O, height: R } = g || {}, P = Object.assign(Object.assign({}, O && { width: O }), R && { height: R }), N = this.wrap("img", null, Object.assign({ src: a, alt: m }, P));
+        return this.addRaw(N).addEOL();
       }
       /**
        * Adds an HTML section heading element
@@ -1467,12 +1467,12 @@ function rt() {
       return _ && _.trimWhitespace === !1 ? T : T.trim();
     }
     e.getInput = P;
-    function I(p, _) {
+    function N(p, _) {
       const T = P(p, _).split(`
 `).filter((q) => q !== "");
       return _ && _.trimWhitespace === !1 ? T : T.map((q) => q.trim());
     }
-    e.getMultilineInput = I;
+    e.getMultilineInput = N;
     function G(p, _) {
       const T = ["true", "True", "TRUE"], q = ["false", "False", "FALSE"], ue = P(p, _);
       if (T.includes(ue))
@@ -1483,12 +1483,12 @@ function rt() {
 Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     }
     e.getBooleanInput = G;
-    function N(p, _) {
+    function D(p, _) {
       if (process.env.GITHUB_OUTPUT || "")
         return i.issueFileCommand("OUTPUT", i.prepareKeyValueMessage(p, _));
       process.stdout.write(h.EOL), s.issueCommand("set-output", { name: p }, u.toCommandValue(_));
     }
-    e.setOutput = N;
+    e.setOutput = D;
     function U(p) {
       s.issue("echo", p ? "on" : "off");
     }
@@ -1576,9 +1576,9 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     } });
   }(ge)), ge;
 }
-var D = rt();
+var I = rt();
 function ur() {
-  const e = D.getInput("result-type"), r = D.getInput("summary-path"), t = D.getInput("vitest-config-path"), n = D.getInput("badge-pass-color"), o = D.getInput("badge-fail-color"), s = D.getInput("badge-neutral-color");
+  const e = I.getInput("result-type"), r = I.getInput("summary-path"), t = I.getInput("vitest-config-path"), n = I.getInput("badge-pass-color"), o = I.getInput("badge-fail-color"), s = I.getInput("badge-neutral-color");
   return {
     resultType: e,
     summaryPath: r,
@@ -1595,11 +1595,11 @@ class cr {
   static async parse(r) {
     try {
       const t = Fe.resolve(process.cwd(), r), n = await ke.readFile(t, "utf8");
-      return D.debug(`Summary: ${JSON.stringify(n)}`), {
+      return I.debug(`Summary: ${JSON.stringify(n)}`), {
         results: JSON.parse(n)
       };
     } catch (t) {
-      return D.warning(`Unable to parse vitest config file:
+      return I.warning(`Unable to parse vitest config file:
  ${t}`), {};
     }
   }
@@ -1628,9 +1628,9 @@ class Ae {
           statements: 100
         };
       const o = n.match(dr), s = n.match(hr), i = n.match(pr), u = n.match(fr), h = new Ae();
-      return o && (h.lines = parseInt(o[1])), s && (h.branches = parseInt(s[1])), i && (h.functions = parseInt(i[1])), u && (h.statements = parseInt(u[1])), D.debug(`Threshold: ${JSON.stringify(h)}`), h;
+      return o && (h.lines = parseInt(o[1])), s && (h.branches = parseInt(s[1])), i && (h.functions = parseInt(i[1])), u && (h.statements = parseInt(u[1])), I.debug(`Threshold: ${JSON.stringify(h)}`), h;
     } catch (t) {
-      return D.warning(`Unable to parse vitest config file:
+      return I.warning(`Unable to parse vitest config file:
  ${t}`), ae;
     }
   }
@@ -1643,7 +1643,7 @@ class mr {
     this._options = r;
   }
   async setup() {
-    this._threshold = await Ae.parse(this._options.vitestConfigPath), this._summary = await cr.parse(this._options.summaryPath);
+    I.debug("Entering CoverageReport.setup"), this._threshold = await Ae.parse(this._options.vitestConfigPath), this._summary = await cr.parse(this._options.summaryPath);
   }
   results(r) {
     const t = this._threshold[r], n = this.getSummary(r);
@@ -1682,18 +1682,18 @@ class mr {
     }
   }
   getSummary(r) {
-    return !this._summary || !this._summary.results || !this._summary.results.total || !this._summary.results.total[r] ? (D.warning(`No results found for ${r}.`), null) : this._summary.results.total[r];
+    return !this._summary || !this._summary.results || !this._summary.results.total || !this._summary.results.total[r] ? (I.warning(`No results found for ${r}.`), null) : this._summary.results.total[r];
   }
 }
 async function vr() {
   try {
-    D.debug("entering main");
+    I.debug("entering main");
     const e = ur(), r = new mr(e);
     await r.setup();
     const t = r.results(e.resultType);
-    D.setOutput("status", t.status), D.setOutput("percentage", t.percentage), D.setOutput("covered", t.covered), D.setOutput("color", t.color), D.debug("exiting");
+    I.setOutput("status", t.status), I.setOutput("percentage", t.percentage), I.setOutput("covered", t.covered), I.setOutput("color", t.color), I.debug("exiting");
   } catch (e) {
-    e instanceof Error && D.setFailed(e.message);
+    e instanceof Error && I.setFailed(e.message);
   }
 }
 vr();
