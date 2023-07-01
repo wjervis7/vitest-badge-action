@@ -1,0 +1,14 @@
+# Allows changes to only dist folder
+name: Generate dist
+
+on:
+  pull_request:
+    paths:
+      - 'dist/**'
+
+jobs:
+  dist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: 'echo "No build required."'
