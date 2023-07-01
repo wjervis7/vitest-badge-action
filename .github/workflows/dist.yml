@@ -25,6 +25,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set Node.js 20.x
         uses: actions/setup-node@v3.6.0
@@ -40,3 +42,5 @@ jobs:
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: './dist/'  
