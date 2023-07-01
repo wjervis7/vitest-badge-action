@@ -6,14 +6,10 @@
 name: Generate dist
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
   pull_request:
     paths-ignore:
       - '**.md'
+      - 'dist/**'
   workflow_dispatch:
 
 jobs:
@@ -24,9 +20,17 @@ jobs:
       contents: write
 
     steps:
+      - name: Generate App Token
+        id: token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ steps.token.outputs.token }}
 
       - name: Set Node.js 20.x
         uses: actions/setup-node@v3.6.0

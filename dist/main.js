@@ -124,11 +124,11 @@ const Ot = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a
 function de(e) {
   return typeof e == "string" && Ot.test(e);
 }
-var D = [];
+var j = [];
 for (var ye = 0; ye < 256; ++ye)
-  D.push((ye + 256).toString(16).substr(1));
+  j.push((ye + 256).toString(16).substr(1));
 function he(e) {
-  var r = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, t = (D[e[r + 0]] + D[e[r + 1]] + D[e[r + 2]] + D[e[r + 3]] + "-" + D[e[r + 4]] + D[e[r + 5]] + "-" + D[e[r + 6]] + D[e[r + 7]] + "-" + D[e[r + 8]] + D[e[r + 9]] + "-" + D[e[r + 10]] + D[e[r + 11]] + D[e[r + 12]] + D[e[r + 13]] + D[e[r + 14]] + D[e[r + 15]]).toLowerCase();
+  var r = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, t = (j[e[r + 0]] + j[e[r + 1]] + j[e[r + 2]] + j[e[r + 3]] + "-" + j[e[r + 4]] + j[e[r + 5]] + "-" + j[e[r + 6]] + j[e[r + 7]] + "-" + j[e[r + 8]] + j[e[r + 9]] + "-" + j[e[r + 10]] + j[e[r + 11]] + j[e[r + 12]] + j[e[r + 13]] + j[e[r + 14]] + j[e[r + 15]]).toLowerCase();
   if (!de(t))
     throw TypeError("Stringified UUID is invalid");
   return t;
@@ -209,7 +209,7 @@ function Ct(e, r) {
   e[r >> 5] |= 128 << r % 32, e[Ye(r) - 1] = r;
   for (var t = 1732584193, n = -271733879, o = -1732584194, s = 271733878, i = 0; i < e.length; i += 16) {
     var u = t, h = n, v = o, a = s;
-    t = j(t, n, o, s, e[i], 7, -680876936), s = j(s, t, n, o, e[i + 1], 12, -389564586), o = j(o, s, t, n, e[i + 2], 17, 606105819), n = j(n, o, s, t, e[i + 3], 22, -1044525330), t = j(t, n, o, s, e[i + 4], 7, -176418897), s = j(s, t, n, o, e[i + 5], 12, 1200080426), o = j(o, s, t, n, e[i + 6], 17, -1473231341), n = j(n, o, s, t, e[i + 7], 22, -45705983), t = j(t, n, o, s, e[i + 8], 7, 1770035416), s = j(s, t, n, o, e[i + 9], 12, -1958414417), o = j(o, s, t, n, e[i + 10], 17, -42063), n = j(n, o, s, t, e[i + 11], 22, -1990404162), t = j(t, n, o, s, e[i + 12], 7, 1804603682), s = j(s, t, n, o, e[i + 13], 12, -40341101), o = j(o, s, t, n, e[i + 14], 17, -1502002290), n = j(n, o, s, t, e[i + 15], 22, 1236535329), t = k(t, n, o, s, e[i + 1], 5, -165796510), s = k(s, t, n, o, e[i + 6], 9, -1069501632), o = k(o, s, t, n, e[i + 11], 14, 643717713), n = k(n, o, s, t, e[i], 20, -373897302), t = k(t, n, o, s, e[i + 5], 5, -701558691), s = k(s, t, n, o, e[i + 10], 9, 38016083), o = k(o, s, t, n, e[i + 15], 14, -660478335), n = k(n, o, s, t, e[i + 4], 20, -405537848), t = k(t, n, o, s, e[i + 9], 5, 568446438), s = k(s, t, n, o, e[i + 14], 9, -1019803690), o = k(o, s, t, n, e[i + 3], 14, -187363961), n = k(n, o, s, t, e[i + 8], 20, 1163531501), t = k(t, n, o, s, e[i + 13], 5, -1444681467), s = k(s, t, n, o, e[i + 2], 9, -51403784), o = k(o, s, t, n, e[i + 7], 14, 1735328473), n = k(n, o, s, t, e[i + 12], 20, -1926607734), t = B(t, n, o, s, e[i + 5], 4, -378558), s = B(s, t, n, o, e[i + 8], 11, -2022574463), o = B(o, s, t, n, e[i + 11], 16, 1839030562), n = B(n, o, s, t, e[i + 14], 23, -35309556), t = B(t, n, o, s, e[i + 1], 4, -1530992060), s = B(s, t, n, o, e[i + 4], 11, 1272893353), o = B(o, s, t, n, e[i + 7], 16, -155497632), n = B(n, o, s, t, e[i + 10], 23, -1094730640), t = B(t, n, o, s, e[i + 13], 4, 681279174), s = B(s, t, n, o, e[i], 11, -358537222), o = B(o, s, t, n, e[i + 3], 16, -722521979), n = B(n, o, s, t, e[i + 6], 23, 76029189), t = B(t, n, o, s, e[i + 9], 4, -640364487), s = B(s, t, n, o, e[i + 12], 11, -421815835), o = B(o, s, t, n, e[i + 15], 16, 530742520), n = B(n, o, s, t, e[i + 2], 23, -995338651), t = L(t, n, o, s, e[i], 6, -198630844), s = L(s, t, n, o, e[i + 7], 10, 1126891415), o = L(o, s, t, n, e[i + 14], 15, -1416354905), n = L(n, o, s, t, e[i + 5], 21, -57434055), t = L(t, n, o, s, e[i + 12], 6, 1700485571), s = L(s, t, n, o, e[i + 3], 10, -1894986606), o = L(o, s, t, n, e[i + 10], 15, -1051523), n = L(n, o, s, t, e[i + 1], 21, -2054922799), t = L(t, n, o, s, e[i + 8], 6, 1873313359), s = L(s, t, n, o, e[i + 15], 10, -30611744), o = L(o, s, t, n, e[i + 6], 15, -1560198380), n = L(n, o, s, t, e[i + 13], 21, 1309151649), t = L(t, n, o, s, e[i + 4], 6, -145523070), s = L(s, t, n, o, e[i + 11], 10, -1120210379), o = L(o, s, t, n, e[i + 2], 15, 718787259), n = L(n, o, s, t, e[i + 9], 21, -343485551), t = W(t, u), n = W(n, h), o = W(o, v), s = W(s, a);
+    t = k(t, n, o, s, e[i], 7, -680876936), s = k(s, t, n, o, e[i + 1], 12, -389564586), o = k(o, s, t, n, e[i + 2], 17, 606105819), n = k(n, o, s, t, e[i + 3], 22, -1044525330), t = k(t, n, o, s, e[i + 4], 7, -176418897), s = k(s, t, n, o, e[i + 5], 12, 1200080426), o = k(o, s, t, n, e[i + 6], 17, -1473231341), n = k(n, o, s, t, e[i + 7], 22, -45705983), t = k(t, n, o, s, e[i + 8], 7, 1770035416), s = k(s, t, n, o, e[i + 9], 12, -1958414417), o = k(o, s, t, n, e[i + 10], 17, -42063), n = k(n, o, s, t, e[i + 11], 22, -1990404162), t = k(t, n, o, s, e[i + 12], 7, 1804603682), s = k(s, t, n, o, e[i + 13], 12, -40341101), o = k(o, s, t, n, e[i + 14], 17, -1502002290), n = k(n, o, s, t, e[i + 15], 22, 1236535329), t = B(t, n, o, s, e[i + 1], 5, -165796510), s = B(s, t, n, o, e[i + 6], 9, -1069501632), o = B(o, s, t, n, e[i + 11], 14, 643717713), n = B(n, o, s, t, e[i], 20, -373897302), t = B(t, n, o, s, e[i + 5], 5, -701558691), s = B(s, t, n, o, e[i + 10], 9, 38016083), o = B(o, s, t, n, e[i + 15], 14, -660478335), n = B(n, o, s, t, e[i + 4], 20, -405537848), t = B(t, n, o, s, e[i + 9], 5, 568446438), s = B(s, t, n, o, e[i + 14], 9, -1019803690), o = B(o, s, t, n, e[i + 3], 14, -187363961), n = B(n, o, s, t, e[i + 8], 20, 1163531501), t = B(t, n, o, s, e[i + 13], 5, -1444681467), s = B(s, t, n, o, e[i + 2], 9, -51403784), o = B(o, s, t, n, e[i + 7], 14, 1735328473), n = B(n, o, s, t, e[i + 12], 20, -1926607734), t = L(t, n, o, s, e[i + 5], 4, -378558), s = L(s, t, n, o, e[i + 8], 11, -2022574463), o = L(o, s, t, n, e[i + 11], 16, 1839030562), n = L(n, o, s, t, e[i + 14], 23, -35309556), t = L(t, n, o, s, e[i + 1], 4, -1530992060), s = L(s, t, n, o, e[i + 4], 11, 1272893353), o = L(o, s, t, n, e[i + 7], 16, -155497632), n = L(n, o, s, t, e[i + 10], 23, -1094730640), t = L(t, n, o, s, e[i + 13], 4, 681279174), s = L(s, t, n, o, e[i], 11, -358537222), o = L(o, s, t, n, e[i + 3], 16, -722521979), n = L(n, o, s, t, e[i + 6], 23, 76029189), t = L(t, n, o, s, e[i + 9], 4, -640364487), s = L(s, t, n, o, e[i + 12], 11, -421815835), o = L(o, s, t, n, e[i + 15], 16, 530742520), n = L(n, o, s, t, e[i + 2], 23, -995338651), t = V(t, n, o, s, e[i], 6, -198630844), s = V(s, t, n, o, e[i + 7], 10, 1126891415), o = V(o, s, t, n, e[i + 14], 15, -1416354905), n = V(n, o, s, t, e[i + 5], 21, -57434055), t = V(t, n, o, s, e[i + 12], 6, 1700485571), s = V(s, t, n, o, e[i + 3], 10, -1894986606), o = V(o, s, t, n, e[i + 10], 15, -1051523), n = V(n, o, s, t, e[i + 1], 21, -2054922799), t = V(t, n, o, s, e[i + 8], 6, 1873313359), s = V(s, t, n, o, e[i + 15], 10, -30611744), o = V(o, s, t, n, e[i + 6], 15, -1560198380), n = V(n, o, s, t, e[i + 13], 21, 1309151649), t = V(t, n, o, s, e[i + 4], 6, -145523070), s = V(s, t, n, o, e[i + 11], 10, -1120210379), o = V(o, s, t, n, e[i + 2], 15, 718787259), n = V(n, o, s, t, e[i + 9], 21, -343485551), t = W(t, u), n = W(n, h), o = W(o, v), s = W(s, a);
   }
   return [t, n, o, s];
 }
@@ -230,16 +230,16 @@ function $t(e, r) {
 function pe(e, r, t, n, o, s) {
   return W($t(W(W(r, e), W(n, s)), o), t);
 }
-function j(e, r, t, n, o, s, i) {
+function k(e, r, t, n, o, s, i) {
   return pe(r & t | ~r & n, e, r, o, s, i);
 }
-function k(e, r, t, n, o, s, i) {
+function B(e, r, t, n, o, s, i) {
   return pe(r & n | t & ~n, e, r, o, s, i);
 }
-function B(e, r, t, n, o, s, i) {
+function L(e, r, t, n, o, s, i) {
   return pe(r ^ t ^ n, e, r, o, s, i);
 }
-function L(e, r, t, n, o, s, i) {
+function V(e, r, t, n, o, s, i) {
   return pe(t ^ (r | ~n), e, r, o, s, i);
 }
 var Mt = Ke("v3", 48, Tt);
@@ -291,11 +291,11 @@ function Dt(e) {
       g[O] = u[m][O];
     for (var R = 16; R < 80; ++R)
       g[R] = Oe(g[R - 3] ^ g[R - 8] ^ g[R - 14] ^ g[R - 16], 1);
-    for (var P = t[0], I = t[1], G = t[2], N = t[3], U = t[4], F = 0; F < 80; ++F) {
-      var Y = Math.floor(F / 20), z = Oe(P, 5) + Nt(Y, I, G, N) + U + r[Y] + g[F] >>> 0;
-      U = N, N = G, G = Oe(I, 30) >>> 0, I = P, P = z;
+    for (var P = t[0], N = t[1], G = t[2], D = t[3], U = t[4], F = 0; F < 80; ++F) {
+      var Y = Math.floor(F / 20), z = Oe(P, 5) + Nt(Y, N, G, D) + U + r[Y] + g[F] >>> 0;
+      U = D, D = G, G = Oe(N, 30) >>> 0, N = P, P = z;
     }
-    t[0] = t[0] + P >>> 0, t[1] = t[1] + I >>> 0, t[2] = t[2] + G >>> 0, t[3] = t[3] + N >>> 0, t[4] = t[4] + U >>> 0;
+    t[0] = t[0] + P >>> 0, t[1] = t[1] + N >>> 0, t[2] = t[2] + G >>> 0, t[3] = t[3] + D >>> 0, t[4] = t[4] + U >>> 0;
   }
   return [t[0] >> 24 & 255, t[0] >> 16 & 255, t[0] >> 8 & 255, t[0] & 255, t[1] >> 24 & 255, t[1] >> 16 & 255, t[1] >> 8 & 255, t[1] & 255, t[2] >> 24 & 255, t[2] >> 16 & 255, t[2] >> 8 & 255, t[2] & 255, t[3] >> 24 & 255, t[3] >> 16 & 255, t[3] >> 8 & 255, t[3] & 255, t[4] >> 24 & 255, t[4] >> 16 & 255, t[4] >> 8 & 255, t[4] & 255];
 }
@@ -611,13 +611,13 @@ var rr = oe;
     v.BadGateway,
     v.ServiceUnavailable,
     v.GatewayTimeout
-  ], P = ["OPTIONS", "GET", "DELETE", "HEAD"], I = 10, G = 5;
-  class N extends Error {
+  ], P = ["OPTIONS", "GET", "DELETE", "HEAD"], N = 10, G = 5;
+  class D extends Error {
     constructor(d, c) {
-      super(d), this.name = "HttpClientError", this.statusCode = c, Object.setPrototypeOf(this, N.prototype);
+      super(d), this.name = "HttpClientError", this.statusCode = c, Object.setPrototypeOf(this, D.prototype);
     }
   }
-  e.HttpClientError = N;
+  e.HttpClientError = D;
   class U {
     constructor(d) {
       this.message = d;
@@ -866,7 +866,7 @@ var rr = oe;
     }
     _performExponentialBackoff(d) {
       return o(this, void 0, void 0, function* () {
-        d = Math.min(I, d);
+        d = Math.min(N, d);
         const c = G * Math.pow(2, d);
         return new Promise((l) => setTimeout(() => l(), c));
       });
@@ -896,7 +896,7 @@ var rr = oe;
           if (b > 299) {
             let $;
             A && A.message ? $ = A.message : E && E.length > 0 ? $ = E : $ = `Failed request: (${b})`;
-            const M = new N($, b);
+            const M = new D($, b);
             M.result = S.result, y(M);
           } else
             l(S);
@@ -1015,15 +1015,15 @@ function ir() {
       function g(P) {
         try {
           R(h.next(P));
-        } catch (I) {
-          m(I);
+        } catch (N) {
+          m(N);
         }
       }
       function O(P) {
         try {
           R(h.throw(P));
-        } catch (I) {
-          m(I);
+        } catch (N) {
+          m(N);
         }
       }
       function R(P) {
@@ -1098,24 +1098,24 @@ function Ie() {
         });
       }
       return new (m || (m = Promise))(function(R, P) {
-        function I(U) {
+        function N(U) {
           try {
-            N(g.next(U));
+            D(g.next(U));
           } catch (F) {
             P(F);
           }
         }
         function G(U) {
           try {
-            N(g.throw(U));
+            D(g.throw(U));
           } catch (F) {
             P(F);
           }
         }
-        function N(U) {
-          U.done ? R(U.value) : O(U.value).then(I, G);
+        function D(U) {
+          U.done ? R(U.value) : O(U.value).then(N, G);
         }
-        N((g = g.apply(v, a || [])).next());
+        D((g = g.apply(v, a || [])).next());
       });
     };
     Object.defineProperty(e, "__esModule", { value: !0 }), e.summary = e.markdownSummary = e.SUMMARY_DOCS_URL = e.SUMMARY_ENV_VAR = void 0;
@@ -1261,7 +1261,7 @@ function Ie() {
           const R = O.map((P) => {
             if (typeof P == "string")
               return this.wrap("td", P);
-            const { header: I, data: G, colspan: N, rowspan: U } = P, F = I ? "th" : "td", Y = Object.assign(Object.assign({}, N && { colspan: N }), U && { rowspan: U });
+            const { header: N, data: G, colspan: D, rowspan: U } = P, F = N ? "th" : "td", Y = Object.assign(Object.assign({}, D && { colspan: D }), U && { rowspan: U });
             return this.wrap(F, G, Y);
           }).join("");
           return this.wrap("tr", R);
@@ -1290,8 +1290,8 @@ function Ie() {
        * @returns {Summary} summary instance
        */
       addImage(a, m, g) {
-        const { width: O, height: R } = g || {}, P = Object.assign(Object.assign({}, O && { width: O }), R && { height: R }), I = this.wrap("img", null, Object.assign({ src: a, alt: m }, P));
-        return this.addRaw(I).addEOL();
+        const { width: O, height: R } = g || {}, P = Object.assign(Object.assign({}, O && { width: O }), R && { height: R }), N = this.wrap("img", null, Object.assign({ src: a, alt: m }, P));
+        return this.addRaw(N).addEOL();
       }
       /**
        * Adds an HTML section heading element
@@ -1467,12 +1467,12 @@ function rt() {
       return _ && _.trimWhitespace === !1 ? T : T.trim();
     }
     e.getInput = P;
-    function I(p, _) {
+    function N(p, _) {
       const T = P(p, _).split(`
 `).filter((q) => q !== "");
       return _ && _.trimWhitespace === !1 ? T : T.map((q) => q.trim());
     }
-    e.getMultilineInput = I;
+    e.getMultilineInput = N;
     function G(p, _) {
       const T = ["true", "True", "TRUE"], q = ["false", "False", "FALSE"], ue = P(p, _);
       if (T.includes(ue))
@@ -1483,12 +1483,12 @@ function rt() {
 Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     }
     e.getBooleanInput = G;
-    function N(p, _) {
+    function D(p, _) {
       if (process.env.GITHUB_OUTPUT || "")
         return i.issueFileCommand("OUTPUT", i.prepareKeyValueMessage(p, _));
       process.stdout.write(h.EOL), s.issueCommand("set-output", { name: p }, u.toCommandValue(_));
     }
-    e.setOutput = N;
+    e.setOutput = D;
     function U(p) {
       s.issue("echo", p ? "on" : "off");
     }
@@ -1576,9 +1576,9 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     } });
   }(ge)), ge;
 }
-var V = rt();
+var I = rt();
 function ur() {
-  const e = V.getInput("result-type"), r = V.getInput("summary-path"), t = V.getInput("vitest-config-path"), n = V.getInput("badge-pass-color"), o = V.getInput("badge-fail-color"), s = V.getInput("badge-neutral-color");
+  const e = I.getInput("result-type"), r = I.getInput("summary-path"), t = I.getInput("vitest-config-path"), n = I.getInput("badge-pass-color"), o = I.getInput("badge-fail-color"), s = I.getInput("badge-neutral-color");
   return {
     resultType: e,
     summaryPath: r,
@@ -1595,11 +1595,11 @@ class cr {
   static async parse(r) {
     try {
       const t = Fe.resolve(process.cwd(), r), n = await ke.readFile(t, "utf8");
-      return V.debug(`Summary: ${JSON.stringify(n)}`), {
+      return I.debug(`Summary: ${JSON.stringify(n)}`), {
         results: JSON.parse(n)
       };
     } catch (t) {
-      return V.warning(`Unable to parse vitest config file:
+      return I.warning(`Unable to parse vitest config file:
  ${t}`), {};
     }
   }
@@ -1628,9 +1628,9 @@ class Ae {
           statements: 100
         };
       const o = n.match(dr), s = n.match(hr), i = n.match(pr), u = n.match(fr), h = new Ae();
-      return o && (h.lines = parseInt(o[1])), s && (h.branches = parseInt(s[1])), i && (h.functions = parseInt(i[1])), u && (h.statements = parseInt(u[1])), V.debug(`Threshold: ${JSON.stringify(h)}`), h;
+      return o && (h.lines = parseInt(o[1])), s && (h.branches = parseInt(s[1])), i && (h.functions = parseInt(i[1])), u && (h.statements = parseInt(u[1])), I.debug(`Threshold: ${JSON.stringify(h)}`), h;
     } catch (t) {
-      return V.warning(`Unable to parse vitest config file:
+      return I.warning(`Unable to parse vitest config file:
  ${t}`), ae;
     }
   }
@@ -1643,7 +1643,7 @@ class mr {
     this._options = r;
   }
   async setup() {
-    this._threshold = await Ae.parse(this._options.vitestConfigPath), this._summary = await cr.parse(this._options.summaryPath);
+    I.debug("Entering CoverageReport.setup"), this._threshold = await Ae.parse(this._options.vitestConfigPath), this._summary = await cr.parse(this._options.summaryPath);
   }
   results(r) {
     const t = this._threshold[r], n = this.getSummary(r);
@@ -1682,17 +1682,18 @@ class mr {
     }
   }
   getSummary(r) {
-    return !this._summary || !this._summary.results || !this._summary.results.total || !this._summary.results.total[r] ? (V.warning(`No results found for ${r}.`), null) : this._summary.results.total[r];
+    return !this._summary || !this._summary.results || !this._summary.results.total || !this._summary.results.total[r] ? (I.warning(`No results found for ${r}.`), null) : this._summary.results.total[r];
   }
 }
 async function vr() {
   try {
+    I.debug("entering main");
     const e = ur(), r = new mr(e);
     await r.setup();
     const t = r.results(e.resultType);
-    V.setOutput("status", t.status), V.setOutput("percentage", t.percentage), V.setOutput("covered", t.covered), V.setOutput("color", t.color);
+    I.setOutput("status", t.status), I.setOutput("percentage", t.percentage), I.setOutput("covered", t.covered), I.setOutput("color", t.color), I.debug("exiting");
   } catch (e) {
-    e instanceof Error && V.setFailed(e.message);
+    e instanceof Error && I.setFailed(e.message);
   }
 }
 vr();
