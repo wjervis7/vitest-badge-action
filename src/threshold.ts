@@ -1,9 +1,6 @@
 import path from "node:path";
+import { promises as fs } from "fs";
 import * as core from "@actions/core";
-import { container } from "tsyringe";
-import { IFs } from "./types/fs";
-
-const fs = container.resolve<IFs>("fs");
 
 const regex100 = /100"?\s*:\s*true/;
 const regexStatements = /statements\s*:\s*(\d+)/;
@@ -12,10 +9,10 @@ const regexBranches = /branches\s*:\s*(\d+)/;
 const regexFunctions = /functions\s*:\s*(\d+)/;
 
 const defaultThreshold = {
-    lines: 100,
-    branches: 100,
-    functions: 100,
-    statements: 100
+    lines: 60,
+    branches: 60,
+    functions: 60,
+    statements: 60
 };
 
 export class Threshold {
@@ -60,6 +57,8 @@ export class Threshold {
             if (statements) {
                 threshold.statements = parseInt(statements[1]);
             }
+
+            core.debug(`Threshold: ${JSON.stringify(threshold)}`);
 
             return threshold;
         } catch (err: unknown) {

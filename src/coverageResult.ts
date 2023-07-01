@@ -1,4 +1,4 @@
-import { Result } from "./coverageReport";
+import { Result } from "@/coverageReport";
 
 export interface ICoverageResult {
     status: Result;

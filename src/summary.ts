@@ -1,9 +1,6 @@
-import { container } from "tsyringe";
 import * as core from "@actions/core";
 import path from "node:path";
-import { IFs } from "./types/fs";
-
-const fs = container.resolve<IFs>("fs");
+import { promises as fs } from "fs";
 
 export type TestType = "lines" | "branches" | "functions" | "statements";
 
@@ -33,6 +30,8 @@ export class Summary {
         try {
             const resolvedPath = path.resolve(process.cwd(), summaryFile);
             const rawContent = await fs.readFile(resolvedPath, "utf8");
+
+            core.debug(`Summary: ${JSON.stringify(rawContent)}`);
 
             return {
                 results: JSON.parse(rawContent) as JsonSummary

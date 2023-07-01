@@ -1,9 +1,14 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "./lib",                        /* Redirect output structure to the directory. */
-    "rootDir": "./src",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
-  },
-  "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules", "**/*.test.ts"]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ]
 }

@@ -1,0 +1,23 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "**/__tests__/*"
+  ],
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}
