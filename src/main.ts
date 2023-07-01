@@ -1,5 +1,5 @@
 import * as core from "@actions/core";
-import "core-js/es/reflect";
+import "reflect-metadata";
 import { promises } from "fs";
 
 import { container } from "tsyringe";

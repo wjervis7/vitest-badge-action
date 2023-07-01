@@ -1,6 +1,9 @@
 name: "Vitest Badge Action"
 description: "Provide a description here"
 author: "wjervis7"
+branding:
+  icon: activity
+  color: 'green'
 inputs:
   result-type:
     description: "Type of result to make badge for. Can be 'lines', 'statements', 'functions', or 'branches'."
