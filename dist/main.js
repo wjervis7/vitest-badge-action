@@ -124,11 +124,11 @@ const Ot = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a
 function de(e) {
   return typeof e == "string" && Ot.test(e);
 }
-var D = [];
+var j = [];
 for (var ye = 0; ye < 256; ++ye)
-  D.push((ye + 256).toString(16).substr(1));
+  j.push((ye + 256).toString(16).substr(1));
 function he(e) {
-  var r = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, t = (D[e[r + 0]] + D[e[r + 1]] + D[e[r + 2]] + D[e[r + 3]] + "-" + D[e[r + 4]] + D[e[r + 5]] + "-" + D[e[r + 6]] + D[e[r + 7]] + "-" + D[e[r + 8]] + D[e[r + 9]] + "-" + D[e[r + 10]] + D[e[r + 11]] + D[e[r + 12]] + D[e[r + 13]] + D[e[r + 14]] + D[e[r + 15]]).toLowerCase();
+  var r = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, t = (j[e[r + 0]] + j[e[r + 1]] + j[e[r + 2]] + j[e[r + 3]] + "-" + j[e[r + 4]] + j[e[r + 5]] + "-" + j[e[r + 6]] + j[e[r + 7]] + "-" + j[e[r + 8]] + j[e[r + 9]] + "-" + j[e[r + 10]] + j[e[r + 11]] + j[e[r + 12]] + j[e[r + 13]] + j[e[r + 14]] + j[e[r + 15]]).toLowerCase();
   if (!de(t))
     throw TypeError("Stringified UUID is invalid");
   return t;
@@ -209,7 +209,7 @@ function Ct(e, r) {
   e[r >> 5] |= 128 << r % 32, e[Ye(r) - 1] = r;
   for (var t = 1732584193, n = -271733879, o = -1732584194, s = 271733878, i = 0; i < e.length; i += 16) {
     var u = t, h = n, v = o, a = s;
-    t = j(t, n, o, s, e[i], 7, -680876936), s = j(s, t, n, o, e[i + 1], 12, -389564586), o = j(o, s, t, n, e[i + 2], 17, 606105819), n = j(n, o, s, t, e[i + 3], 22, -1044525330), t = j(t, n, o, s, e[i + 4], 7, -176418897), s = j(s, t, n, o, e[i + 5], 12, 1200080426), o = j(o, s, t, n, e[i + 6], 17, -1473231341), n = j(n, o, s, t, e[i + 7], 22, -45705983), t = j(t, n, o, s, e[i + 8], 7, 1770035416), s = j(s, t, n, o, e[i + 9], 12, -1958414417), o = j(o, s, t, n, e[i + 10], 17, -42063), n = j(n, o, s, t, e[i + 11], 22, -1990404162), t = j(t, n, o, s, e[i + 12], 7, 1804603682), s = j(s, t, n, o, e[i + 13], 12, -40341101), o = j(o, s, t, n, e[i + 14], 17, -1502002290), n = j(n, o, s, t, e[i + 15], 22, 1236535329), t = k(t, n, o, s, e[i + 1], 5, -165796510), s = k(s, t, n, o, e[i + 6], 9, -1069501632), o = k(o, s, t, n, e[i + 11], 14, 643717713), n = k(n, o, s, t, e[i], 20, -373897302), t = k(t, n, o, s, e[i + 5], 5, -701558691), s = k(s, t, n, o, e[i + 10], 9, 38016083), o = k(o, s, t, n, e[i + 15], 14, -660478335), n = k(n, o, s, t, e[i + 4], 20, -405537848), t = k(t, n, o, s, e[i + 9], 5, 568446438), s = k(s, t, n, o, e[i + 14], 9, -1019803690), o = k(o, s, t, n, e[i + 3], 14, -187363961), n = k(n, o, s, t, e[i + 8], 20, 1163531501), t = k(t, n, o, s, e[i + 13], 5, -1444681467), s = k(s, t, n, o, e[i + 2], 9, -51403784), o = k(o, s, t, n, e[i + 7], 14, 1735328473), n = k(n, o, s, t, e[i + 12], 20, -1926607734), t = B(t, n, o, s, e[i + 5], 4, -378558), s = B(s, t, n, o, e[i + 8], 11, -2022574463), o = B(o, s, t, n, e[i + 11], 16, 1839030562), n = B(n, o, s, t, e[i + 14], 23, -35309556), t = B(t, n, o, s, e[i + 1], 4, -1530992060), s = B(s, t, n, o, e[i + 4], 11, 1272893353), o = B(o, s, t, n, e[i + 7], 16, -155497632), n = B(n, o, s, t, e[i + 10], 23, -1094730640), t = B(t, n, o, s, e[i + 13], 4, 681279174), s = B(s, t, n, o, e[i], 11, -358537222), o = B(o, s, t, n, e[i + 3], 16, -722521979), n = B(n, o, s, t, e[i + 6], 23, 76029189), t = B(t, n, o, s, e[i + 9], 4, -640364487), s = B(s, t, n, o, e[i + 12], 11, -421815835), o = B(o, s, t, n, e[i + 15], 16, 530742520), n = B(n, o, s, t, e[i + 2], 23, -995338651), t = L(t, n, o, s, e[i], 6, -198630844), s = L(s, t, n, o, e[i + 7], 10, 1126891415), o = L(o, s, t, n, e[i + 14], 15, -1416354905), n = L(n, o, s, t, e[i + 5], 21, -57434055), t = L(t, n, o, s, e[i + 12], 6, 1700485571), s = L(s, t, n, o, e[i + 3], 10, -1894986606), o = L(o, s, t, n, e[i + 10], 15, -1051523), n = L(n, o, s, t, e[i + 1], 21, -2054922799), t = L(t, n, o, s, e[i + 8], 6, 1873313359), s = L(s, t, n, o, e[i + 15], 10, -30611744), o = L(o, s, t, n, e[i + 6], 15, -1560198380), n = L(n, o, s, t, e[i + 13], 21, 1309151649), t = L(t, n, o, s, e[i + 4], 6, -145523070), s = L(s, t, n, o, e[i + 11], 10, -1120210379), o = L(o, s, t, n, e[i + 2], 15, 718787259), n = L(n, o, s, t, e[i + 9], 21, -343485551), t = W(t, u), n = W(n, h), o = W(o, v), s = W(s, a);
+    t = k(t, n, o, s, e[i], 7, -680876936), s = k(s, t, n, o, e[i + 1], 12, -389564586), o = k(o, s, t, n, e[i + 2], 17, 606105819), n = k(n, o, s, t, e[i + 3], 22, -1044525330), t = k(t, n, o, s, e[i + 4], 7, -176418897), s = k(s, t, n, o, e[i + 5], 12, 1200080426), o = k(o, s, t, n, e[i + 6], 17, -1473231341), n = k(n, o, s, t, e[i + 7], 22, -45705983), t = k(t, n, o, s, e[i + 8], 7, 1770035416), s = k(s, t, n, o, e[i + 9], 12, -1958414417), o = k(o, s, t, n, e[i + 10], 17, -42063), n = k(n, o, s, t, e[i + 11], 22, -1990404162), t = k(t, n, o, s, e[i + 12], 7, 1804603682), s = k(s, t, n, o, e[i + 13], 12, -40341101), o = k(o, s, t, n, e[i + 14], 17, -1502002290), n = k(n, o, s, t, e[i + 15], 22, 1236535329), t = B(t, n, o, s, e[i + 1], 5, -165796510), s = B(s, t, n, o, e[i + 6], 9, -1069501632), o = B(o, s, t, n, e[i + 11], 14, 643717713), n = B(n, o, s, t, e[i], 20, -373897302), t = B(t, n, o, s, e[i + 5], 5, -701558691), s = B(s, t, n, o, e[i + 10], 9, 38016083), o = B(o, s, t, n, e[i + 15], 14, -660478335), n = B(n, o, s, t, e[i + 4], 20, -405537848), t = B(t, n, o, s, e[i + 9], 5, 568446438), s = B(s, t, n, o, e[i + 14], 9, -1019803690), o = B(o, s, t, n, e[i + 3], 14, -187363961), n = B(n, o, s, t, e[i + 8], 20, 1163531501), t = B(t, n, o, s, e[i + 13], 5, -1444681467), s = B(s, t, n, o, e[i + 2], 9, -51403784), o = B(o, s, t, n, e[i + 7], 14, 1735328473), n = B(n, o, s, t, e[i + 12], 20, -1926607734), t = L(t, n, o, s, e[i + 5], 4, -378558), s = L(s, t, n, o, e[i + 8], 11, -2022574463), o = L(o, s, t, n, e[i + 11], 16, 1839030562), n = L(n, o, s, t, e[i + 14], 23, -35309556), t = L(t, n, o, s, e[i + 1], 4, -1530992060), s = L(s, t, n, o, e[i + 4], 11, 1272893353), o = L(o, s, t, n, e[i + 7], 16, -155497632), n = L(n, o, s, t, e[i + 10], 23, -1094730640), t = L(t, n, o, s, e[i + 13], 4, 681279174), s = L(s, t, n, o, e[i], 11, -358537222), o = L(o, s, t, n, e[i + 3], 16, -722521979), n = L(n, o, s, t, e[i + 6], 23, 76029189), t = L(t, n, o, s, e[i + 9], 4, -640364487), s = L(s, t, n, o, e[i + 12], 11, -421815835), o = L(o, s, t, n, e[i + 15], 16, 530742520), n = L(n, o, s, t, e[i + 2], 23, -995338651), t = V(t, n, o, s, e[i], 6, -198630844), s = V(s, t, n, o, e[i + 7], 10, 1126891415), o = V(o, s, t, n, e[i + 14], 15, -1416354905), n = V(n, o, s, t, e[i + 5], 21, -57434055), t = V(t, n, o, s, e[i + 12], 6, 1700485571), s = V(s, t, n, o, e[i + 3], 10, -1894986606), o = V(o, s, t, n, e[i + 10], 15, -1051523), n = V(n, o, s, t, e[i + 1], 21, -2054922799), t = V(t, n, o, s, e[i + 8], 6, 1873313359), s = V(s, t, n, o, e[i + 15], 10, -30611744), o = V(o, s, t, n, e[i + 6], 15, -1560198380), n = V(n, o, s, t, e[i + 13], 21, 1309151649), t = V(t, n, o, s, e[i + 4], 6, -145523070), s = V(s, t, n, o, e[i + 11], 10, -1120210379), o = V(o, s, t, n, e[i + 2], 15, 718787259), n = V(n, o, s, t, e[i + 9], 21, -343485551), t = W(t, u), n = W(n, h), o = W(o, v), s = W(s, a);
   }
   return [t, n, o, s];
 }
@@ -230,16 +230,16 @@ function $t(e, r) {
 function pe(e, r, t, n, o, s) {
   return W($t(W(W(r, e), W(n, s)), o), t);
 }
-function j(e, r, t, n, o, s, i) {
+function k(e, r, t, n, o, s, i) {
   return pe(r & t | ~r & n, e, r, o, s, i);
 }
-function k(e, r, t, n, o, s, i) {
+function B(e, r, t, n, o, s, i) {
   return pe(r & n | t & ~n, e, r, o, s, i);
 }
-function B(e, r, t, n, o, s, i) {
+function L(e, r, t, n, o, s, i) {
   return pe(r ^ t ^ n, e, r, o, s, i);
 }
-function L(e, r, t, n, o, s, i) {
+function V(e, r, t, n, o, s, i) {
   return pe(t ^ (r | ~n), e, r, o, s, i);
 }
 var Mt = Ke("v3", 48, Tt);
@@ -1576,9 +1576,9 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     } });
   }(ge)), ge;
 }
-var V = rt();
+var D = rt();
 function ur() {
-  const e = V.getInput("result-type"), r = V.getInput("summary-path"), t = V.getInput("vitest-config-path"), n = V.getInput("badge-pass-color"), o = V.getInput("badge-fail-color"), s = V.getInput("badge-neutral-color");
+  const e = D.getInput("result-type"), r = D.getInput("summary-path"), t = D.getInput("vitest-config-path"), n = D.getInput("badge-pass-color"), o = D.getInput("badge-fail-color"), s = D.getInput("badge-neutral-color");
   return {
     resultType: e,
     summaryPath: r,
@@ -1595,11 +1595,11 @@ class cr {
   static async parse(r) {
     try {
       const t = Fe.resolve(process.cwd(), r), n = await ke.readFile(t, "utf8");
-      return V.debug(`Summary: ${JSON.stringify(n)}`), {
+      return D.debug(`Summary: ${JSON.stringify(n)}`), {
         results: JSON.parse(n)
       };
     } catch (t) {
-      return V.warning(`Unable to parse vitest config file:
+      return D.warning(`Unable to parse vitest config file:
  ${t}`), {};
     }
   }
@@ -1628,9 +1628,9 @@ class Ae {
           statements: 100
         };
       const o = n.match(dr), s = n.match(hr), i = n.match(pr), u = n.match(fr), h = new Ae();
-      return o && (h.lines = parseInt(o[1])), s && (h.branches = parseInt(s[1])), i && (h.functions = parseInt(i[1])), u && (h.statements = parseInt(u[1])), V.debug(`Threshold: ${JSON.stringify(h)}`), h;
+      return o && (h.lines = parseInt(o[1])), s && (h.branches = parseInt(s[1])), i && (h.functions = parseInt(i[1])), u && (h.statements = parseInt(u[1])), D.debug(`Threshold: ${JSON.stringify(h)}`), h;
     } catch (t) {
-      return V.warning(`Unable to parse vitest config file:
+      return D.warning(`Unable to parse vitest config file:
  ${t}`), ae;
     }
   }
@@ -1682,17 +1682,18 @@ class mr {
     }
   }
   getSummary(r) {
-    return !this._summary || !this._summary.results || !this._summary.results.total || !this._summary.results.total[r] ? (V.warning(`No results found for ${r}.`), null) : this._summary.results.total[r];
+    return !this._summary || !this._summary.results || !this._summary.results.total || !this._summary.results.total[r] ? (D.warning(`No results found for ${r}.`), null) : this._summary.results.total[r];
   }
 }
 async function vr() {
   try {
+    D.debug("entering main");
     const e = ur(), r = new mr(e);
     await r.setup();
     const t = r.results(e.resultType);
-    V.setOutput("status", t.status), V.setOutput("percentage", t.percentage), V.setOutput("covered", t.covered), V.setOutput("color", t.color);
+    D.setOutput("status", t.status), D.setOutput("percentage", t.percentage), D.setOutput("covered", t.covered), D.setOutput("color", t.color), D.debug("exiting");
   } catch (e) {
-    e instanceof Error && V.setFailed(e.message);
+    e instanceof Error && D.setFailed(e.message);
   }
 }
 vr();
