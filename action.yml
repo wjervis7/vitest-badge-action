@@ -79,5 +79,5 @@ runs:
       uses: andymckay/append-gist-action@0.2
       with:
         token: ${{ inputs.gist-token }}
-        gistUrl: ${{ inputs.gist-url }}
+        gistURL: ${{ inputs.gist-url }}
         file: ${{ inputs.badge-path }}
