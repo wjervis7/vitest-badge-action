@@ -1,39 +1,33 @@
 import path from "node:path";
 import { promises as fs } from "fs";
-import * as core from "@actions/core";
+import { ICoverageThresholds } from "@/types/coverageTypes";
+import logger from "@/logger";
 
-const regex100 = /100"?\s*:\s*true/;
 const regexStatements = /statements\s*:\s*(\d+)/;
 const regexLines = /lines:\s*(\d+)/;
 const regexBranches = /branches\s*:\s*(\d+)/;
 const regexFunctions = /functions\s*:\s*(\d+)/;
 
-const defaultThreshold = {
+export const defaultThreshold: ICoverageThresholds = {
     lines: 60,
     branches: 60,
     functions: 60,
     statements: 60
 };
 
-export class Threshold {
+export class Threshold implements ICoverageThresholds {
     lines = defaultThreshold.lines;
     branches = defaultThreshold.branches;
     functions = defaultThreshold.functions;
     statements = defaultThreshold.statements;
 
     static async parse(vitestConfigPath: string): Promise<Threshold> {
+        logger.debug("Entering Threshold.parse");
         try {
-            const resolvedPath = path.resolve(process.cwd(), vitestConfigPath);
+            const resolvedPath = path.isAbsolute(vitestConfigPath) ? vitestConfigPath : path.resolve(process.cwd(), vitestConfigPath);
+            logger.debug(`Config Path: ${resolvedPath}`);
             const rawContent = await fs.readFile(resolvedPath, "utf8");
-
-            if (rawContent.match(regex100)) {
-                return {
-                    lines: 100,
-                    branches: 100,
-                    functions: 100,
-                    statements: 100
-                };
-            }
+            logger.debug(`Config Contents: ${rawContent}`);
 
             const lines = rawContent.match(regexLines);
             const branches = rawContent.match(regexBranches);
@@ -58,11 +52,11 @@ export class Threshold {
                 threshold.statements = parseInt(statements[1]);
             }
 
-            core.debug(`Threshold: ${JSON.stringify(threshold)}`);
+            logger.debug(`Threshold: ${JSON.stringify(threshold)}`);
 
             return threshold;
         } catch (err: unknown) {
-            core.warning(`Unable to parse vitest config file:\n ${err}`);
+            logger.warning(`Unable to parse vitest config file:\n ${err}`);
             return defaultThreshold;
         }
     }
