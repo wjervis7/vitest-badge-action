@@ -36,19 +36,7 @@ inputs:
   badge-neutral-color:
     description: "An array (comma separated) with hex (without #) or named colors of the badge value background, when coverage results were not found. More than one creates gradient background."
     default: "696969"
-outputs:
-  status:
-    description: "Summary results as pass/fail/neutral."
-    value: ${{ steps.action.outputs.status }}
-  percentage:
-    description: "Summary results as percentage."
-    value: ${{ steps.action.outputs.percentage }}
-  covered:
-    description: "Summary results as covered/total."
-    value: ${{ steps.action.outputs.covered }}
-  color:
-    description: "Color of the badge."
-    value: ${{ steps.action.outputs.color }}
+
 runs:
   using: "composite"
   steps:
