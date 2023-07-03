@@ -68,11 +68,11 @@ export default mergeConfig(
     beforeEach(async () => {
         await summaryFileHelper.clearTempFile();
         await configFileHelper.clearTempFile();
-    })
+    });
 
     afterAll(async () => {
         await summaryFileHelper.rmTempDir();
-    })
+    });
 
     it("returns neutral object when summary doesn't exist", async () => {
         // arrange
@@ -98,7 +98,7 @@ export default mergeConfig(
             covered: "unknown",
             color: options.badgeNeutralColor
         });
-    })
+    });
 
     it("returns pass object with correct values when pct over threshold", async () => {
         // arrange
@@ -125,7 +125,7 @@ export default mergeConfig(
             covered: "26/31",
             color: options.badgePassColor
         });
-    })
+    });
 
     it("returns fail object with correct values when pct over threshold", async () => {
         // arrange
@@ -152,5 +152,5 @@ export default mergeConfig(
             covered: "147/382",
             color: options.badgeFailColor
         });
-    })
-})
+    });
+});
