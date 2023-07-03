@@ -80,7 +80,7 @@ jobs:
         run: npx vitest --coverage # or run npm script
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v1
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: success() || failure() # run whether steps succeed or not
         with:
           result-type: lines
@@ -126,7 +126,7 @@ jobs:
         run: npx vitest --coverage # or run npm script
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v1
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: success() || failure() # run whether steps succeed or not
         with:
           result-type: statements

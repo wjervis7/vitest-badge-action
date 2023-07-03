@@ -89,7 +89,7 @@ jobs:
         if: (success() || failure())
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v0-beta
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: (success() || failure())
         with:
           result-type: lines
@@ -100,7 +100,7 @@ jobs:
           upload-badge: ${{ steps.branch.outputs.branch == 'main' }}
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v0-beta
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: (success() || failure())
         with:
           result-type: statements
@@ -111,7 +111,7 @@ jobs:
           upload-badge: ${{ steps.branch.outputs.branch == 'main' }}
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v0-beta
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: (success() || failure())
         with:
           result-type: functions
@@ -122,7 +122,7 @@ jobs:
           upload-badge: ${{ steps.branch.outputs.branch == 'main' }}
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v0-beta
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: success() || failure()
         with:
           result-type: branches
