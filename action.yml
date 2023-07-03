@@ -28,14 +28,14 @@ inputs:
     description: "Text to display on badge."
     default: "Tests"
   badge-pass-color:
-    description: "Color of the badge, when tests have passed."
-    default: "#31c653"
+    description: "An array (comma separated) with hex (without #) or named colors of the badge value background, when coverage is at or above the threshold. More than one creates gradient background."
+    default: "31c653"
   badge-fail-color:
-    description: "Color of the badge, when tests have failed, or, coverage is below the threshold."
-    default: "#800000"
+    description: "An array (comma separated) with hex (without #) or named colors of the badge value background, when coverage is below the threshold. More than one creates gradient background."
+    default: "800000"
   badge-neutral-color:
-    description: "Color of the badge, when test results were not found."
-    default: "#696969"
+    description: "An array (comma separated) with hex (without #) or named colors of the badge value background, when coverage results were not found. More than one creates gradient background."
+    default: "696969"
 outputs:
   status:
     description: "Summary results as pass/fail/neutral."
