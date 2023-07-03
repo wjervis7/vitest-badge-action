@@ -138,9 +138,9 @@ jobs:
           file_pattern: './badge.svg'  
 ```
 
-[buildImg]:https//github.com/wjervis7/azure-devops/actions/workflows/validation.yaml/badge.svg?branch=main
-[buildLnk]:https//github.com/wjervis7/azure-devops/actions/workflows/validation.yaml
-[testLinesImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-lines.svg
-[testStatementsImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-statements.svg
-[testFunctionsImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-functions.svg
-[testBranchesImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-branches.svg
+[buildImg]:<https://github.com/wjervis7/vitest-badge-action/actions/workflows/validation.yaml/badge.svg>
+[buildLnk]:<https://github.com/wjervis7/vitest-badge-action/actions/workflows/validation.yaml>
+[testLinesImg]:<https://raw.githubusercontent.com/gist/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-lines.svg>
+[testStatementsImg]:<https://raw.githubusercontent.com/gist/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-statements.svg>
+[testFunctionsImg]:<https://raw.githubusercontent.com/gist/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-functions.svg>
+[testBranchesImg]:<https://raw.githubusercontent.com/gist/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-branches.svg>
