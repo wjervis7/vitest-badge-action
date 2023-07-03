@@ -86,7 +86,7 @@ jobs:
           result-type: lines
           gist-token: ${{ secrets.GIST_TOKEN }} # if you want to upload badge to gist
           gist-url: https://gist.github.com/{org/user}/{gist_id}
-          upload-badge: ${{ github.ref == 'refs/heads/main' }}
+          upload-badge: ${{ github.base_ref == 'refs/heads/main' }}
 ```
 
 ### Example 2
