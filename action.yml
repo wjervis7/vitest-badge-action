@@ -1,5 +1,5 @@
 name: "Vitest Badge Action"
-description: "This action will parse the json summary created by Vitest, and create a status badge based on the results, and optionally upload to a Gist."
+description: "This action parses the json summary created by Vitest, and creates a badge based on the results."
 author: "wjervis7"
 branding:
   icon: activity
