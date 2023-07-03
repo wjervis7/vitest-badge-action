@@ -1,0 +1,125 @@
+---
+name: Validate Build
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  format:
+    name: Format Code Base
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Format code
+        run: npm run format
+
+  lint:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+
+  build:
+    name: Validate Code Base
+    runs-on: ubuntu-latest
+    needs: 
+      - format
+      - lint
+    permissions:
+      contents: write
+      checks: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build code
+        run: npm run build
+
+      - name: Run Unit Tests
+        run: npm run test:coverage
+
+      - name: Publish Results
+        uses: davelosert/vitest-coverage-report-action@v2
+        if: (success() || failure())
+
+      - name: Publish Results Badge
+        uses: wjervis7/vitest-badge-action@v0-beta
+        if: (success() || failure()) && github.ref == 'refs/heads/main'
+        with:
+          result-type: lines
+          gist-token: ${{ secrets.GIST_TOKEN }}
+          gist-url: ${{ vars.GIST_URL }}
+          badge-path: badge-lines.svg
+          badge-text: Coverage (Lines)
+
+      - name: Publish Results Badge
+        uses: wjervis7/vitest-badge-action@v0-beta
+        if: (success() || failure()) && github.ref == 'refs/heads/main'
+        with:
+          result-type: statements
+          gist-token: ${{ secrets.GIST_TOKEN }}
+          gist-url: ${{ vars.GIST_URL }}
+          badge-path: badge-statements.svg
+          badge-text: Coverage (Statements)
+
+      - name: Publish Results Badge
+        uses: wjervis7/vitest-badge-action@v0-beta
+        if: (success() || failure()) && github.ref == 'refs/heads/main'
+        with:
+          result-type: functions
+          gist-token: ${{ secrets.GIST_TOKEN }}
+          gist-url: ${{ vars.GIST_URL }}
+          badge-path: badge-functions.svg
+          badge-text: Coverage (Functions)
+
+      - name: Publish Results Badge
+        uses: wjervis7/vitest-badge-action@v0-beta
+        if: success() || failure()
+        with:
+          result-type: branches
+          gist-token: ${{ secrets.GIST_TOKEN }}
+          gist-url: ${{ vars.GIST_URL }}
+          badge-path: badge-branches.svg
+          badge-text: Coverage (Branches)
+          #upload-badge: ${{ github.ref == 'refs/heads/main' }}
