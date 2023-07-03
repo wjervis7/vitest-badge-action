@@ -20,9 +20,9 @@ export class CoverageReport {
 
         this._thresholdValue = threshold[this._options.resultType];
         logger.debug(`Threshold value: ${this._thresholdValue}`);
-        
+
         const summary = await Summary.parse(this._options.summaryPath);
-        
+
         if (!summary.results || !summary.results.total || !summary.results.total[this._options.resultType]) {
             logger.warning(`No results found for ${this._options.resultType}.`);
             this._summary = undefined;
@@ -82,7 +82,7 @@ export class CoverageReport {
 
     private getBadgeColor(status: CoverageStatus): string {
         logger.debug("Entering CoverageReport.getBadgeColor");
-        
+
         const color = status === "pass" ? this._options.badgePassColor : this._options.badgeFailColor;
 
         logger.debug(`Color: ${color}`);

@@ -36,9 +36,9 @@ You must provide a PAT, with `write` permission, to your Gist, if you want to up
 | vitest-config-path | Path to the vitest config file. | vitest.config.ts | true |
 | summary-path | Path to the json summary file. | ./coverage/coverage-summary.json | true |
 | badge-text | Text to display on badge. | Tests | true |
-| badge-pass-color | Color of the badge, when tests have passed. | #31c653 | true |
-| badge-fail-color | Color of the badge, when tests have failed, or, coverage is below the threshold. | #800000 | true |
-| badge-neutral-color | Color of the badge, when test results were not found. | #696969 | true |
+| badge-pass-color | An array (comma separated) with hex (without #) or named colors of the badge value background, when coverage is at or above the threshold. More than one creates gradient background. | 31c653 | true |
+| badge-fail-color | An array (comma separated) with hex (without #) or named colors of the badge value background, when coverage is below the threshold. More than one creates gradient background. | 800000 | true |
+| badge-neutral-color | An array (comma separated) with hex (without #) or named colors of the badge value background, when coverage results were not found. More than one creates gradient background. | 696969 | true |
 | badge-path | Path to save the temporary badge to. | badge.svg | true |
 | upload-badge | Indicate if badge should be uploaded to Gist. | true | false |
 | gist-token | PAT for writing to gist. | |  false |
