@@ -1,105 +1,146 @@
-<p align="center">
-  <a href="https://github.com/actions/typescript-action/actions"><img alt="typescript-action status" src="https://github.com/actions/typescript-action/workflows/build-test/badge.svg"></a>
-</p>
+# Vitest Badge Action
 
-# Create a JavaScript Action using TypeScript
+[![Validate Build][buildImg]][buildLnk] ![Lines][testLinesImg] ![Lines][testStatementsImg] ![Lines][testFunctionsImg] ![Lines][testBranchesImg]
 
-Use this template to bootstrap the creation of a TypeScript action.:rocket:
+This action will parse the json summary created by Vitest, and create a status badge based on the results, and optionally upload to a Gist.
 
-This template includes compilation support, tests, a validation workflow, publishing, and versioning guidance.  
+## Usage
 
-If you are new, there's also a simpler introduction.  See the [Hello World JavaScript Action](https://github.com/actions/hello-world-javascript-action)
+This action requres you to use Vitest to create a coverage report, with the `json-summary` reporter.
 
-## Create an action from this template
+You can configure the reporter in `vitest.config.ts` file, like this
 
-Click the `Use this Template` and provide the new repo details for your action
+```ts
+import { defineConfig } from 'vitest/config'
 
-## Code in Main
-
-> First, you'll need to have a reasonably modern version of `node` handy. This won't work with versions older than 9, for instance.
-
-Install the dependencies  
-```bash
-$ npm install
+export default defineConfig({
+    test {
+      coverage {
+        reporter [json-summary]
+      }
+    }
+});
 ```
 
-Build the typescript and package it for distribution
-```bash
-$ npm run build && npm run package
-```
+You must execute `vitest --coverage`, in a step, prior to this action.
 
-Run the tests :heavy_check_mark:  
-```bash
-$ npm test
+## Permissions
 
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
+You must provide a PAT, with `write` permission, to your Gist, if you want to upload the badge.
 
-...
-```
+## Inputs
 
-## Change action.yml
+| parameter | description | default | required |
+| --- | --- | --- | --- |
+| result-type | Type of result to make badge for. Can be 'lines', 'statements', 'functions', or 'branches'. | | true |
+| vitest-config-path | Path to the vitest config file. | vitest.config.ts | true |
+| summary-path | Path to the json summary file. | ./coverage/coverage-summary.json | true |
+| badge-text | Text to display on badge. | Tests | true |
+| badge-pass-color | Color of the badge, when tests have passed. | #31c653 | true |
+| badge-fail-color | Color of the badge, when tests have failed, or, coverage is below the threshold. | #800000 | true |
+| badge-neutral-color | Color of the badge, when test results were not found. | #696969 | true |
+| badge-path | Path to save the temporary badge to. | badge.svg | true |
+| upload-badge | Indicate if badge should be uploaded to Gist. | true | false |
+| gist-token | PAT for writing to gist. | |  false |
+| gist-url | Url to Gist. | | false |
 
-The action.yml defines the inputs and output for your action.
+## Example Workflows
 
-Update the action.yml with your name, description, inputs and outputs for your action.
+### Example 1
 
-See the [documentation](https://help.github.com/en/articles/metadata-syntax-for-github-actions)
-
-## Change the Code
-
-Most toolkit and CI/CD operations involve async operations so the action is run in an async function.
-
-```javascript
-import * as core from '@actions/core';
-...
-
-async function run() {
-  try { 
-      ...
-  } 
-  catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run()
-```
-
-See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
-
-## Publish to a distribution branch
-
-Actions are run from GitHub repos so we will checkin the packed dist folder. 
-
-Then run [ncc](https://github.com/zeit/ncc) and push the results:
-```bash
-$ npm run package
-$ git add dist
-$ git commit -a -m "prod dependencies"
-$ git push origin releases/v1
-```
-
-Note: We recommend using the `--license` option for ncc, which will create a license file for all of the production node modules used in your project.
-
-Your action is now published! :rocket: 
-
-See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-
-## Validate
-
-You can now validate the action by referencing `./` in a workflow in your repo (see [test.yml](.github/workflows/test.yml))
+Runs step, and uploads the badge to Gist, if target branch is main.
 
 ```yaml
-uses: ./
-with:
-  milliseconds: 1000
+---
+name: Example1
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Unit Tests
+        run: npx vitest --coverage # or run npm script
+
+      - name: Publish Results Badge
+        uses: wjervis7/vitest-badge-action@v1
+        if: success() || failure() # run whether steps succeed or not
+        with:
+          result-type: lines
+          gist-token: ${{ secrets.GIST_TOKEN }} # if you want to upload badge to gist
+          gist-url: https://gist.github.com/{org/user}/{gist_id}
+          upload-badge: ${{ github.ref == 'refs/heads/main' }}
 ```
 
-See the [actions tab](https://github.com/actions/typescript-action/actions) for runs of this action! :rocket:
+### Example 2
 
-## Usage:
+Runs step, and commits the badge to Git
 
-After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action
+```yaml
+---
+name: Example2
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # needed to commit the changes
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Unit Tests
+        run: npx vitest --coverage # or run npm script
+
+      - name: Publish Results Badge
+        uses: wjervis7/vitest-badge-action@v1
+        if: success() || failure() # run whether steps succeed or not
+        with:
+          result-type: statements
+          upload-badge: false          
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: './badge.svg'  
+```
+
+[buildImg]:https//github.com/wjervis7/azure-devops/actions/workflows/validation.yaml/badge.svg?branch=main
+[buildLnk]:https//github.com/wjervis7/azure-devops/actions/workflows/validation.yaml
+[testLinesImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-lines.svg
+[testStatementsImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-statements.svg
+[testFunctionsImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-functions.svg
+[testBranchesImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-branches.svg

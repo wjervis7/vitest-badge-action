@@ -1,7 +1,11 @@
-import { describe, it, expect } from "vitest";
-import { readOptions } from "@/options";
+import { describe, it, expect, beforeAll } from "vitest";
+import { readOptions } from "../options";
 
 describe("options", () => {
+    beforeAll(() => {
+        process.env["TESTING"] = "true";
+    });
+
     it("loads options correctly", () => {
         process.env["INPUT_RESULT-TYPE"] = "branches";
         process.env["INPUT_VITEST-CONFIG-PATH"] = "vitest.config.ts";
@@ -18,7 +22,7 @@ describe("options", () => {
             badgePassColor: "#31c653",
             resultType: "branches",
             summaryPath: "./coverage/coverage-summary.json",
-            vitestConfigPath: "vitest.config.ts",
+            vitestConfigPath: "vitest.config.ts"
         });
     });
 });

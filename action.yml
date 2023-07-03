@@ -3,14 +3,14 @@ description: "Provide a description here"
 author: "wjervis7"
 branding:
   icon: activity
-  color: 'green'
+  color: "green"
 inputs:
   result-type:
     description: "Type of result to make badge for. Can be 'lines', 'statements', 'functions', or 'branches'."
     required: true
   upload-badge:
     description: "Indicate if badge should be uploaded to Gist."
-    default: true
+    default: "true"
   badge-path:
     description: "Path to save the temporary badge to."
     default: "badge.svg"
@@ -36,16 +36,7 @@ inputs:
   badge-neutral-color:
     description: "Color of the badge, when test results were not found."
     default: "#696969"
-outputs:
-  status:
-    description: "Summary results as pass/fail/neutral."
-    value: ${{ steps.action.outputs.status }}
-  percentage:
-    description: "Summary results as percentage."
-    value: ${{ steps.action.outputs.percentage }}
-  covered:
-    description: "Summary results as covered/total."
-    value: ${{ steps.action.outputs.covered }}
+
 runs:
   using: "composite"
   steps:
