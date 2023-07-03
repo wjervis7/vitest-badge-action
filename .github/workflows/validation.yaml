@@ -61,9 +61,14 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          ref: ${{ github.head_ref }}
+
+      - name: Get Branch
+        id: branch
+        run: |
+          echo "branch=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+
+      - run: |
+          echo "branch=${{ steps.branch.outputs.branch }}"
 
       - name: Use Node.js
         uses: actions/setup-node@v3
@@ -84,7 +89,7 @@ jobs:
         if: (success() || failure())
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v0-beta
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: (success() || failure())
         with:
           result-type: lines
@@ -92,10 +97,10 @@ jobs:
           gist-url: ${{ vars.GIST_URL }}
           badge-path: badge-lines.svg
           badge-text: Coverage (Lines)
-          upload-badge: ${{ github.ref == 'refs/heads/main' }}
+          upload-badge: ${{ steps.branch.outputs.branch == 'main' }}
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v0-beta
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: (success() || failure())
         with:
           result-type: statements
@@ -103,10 +108,10 @@ jobs:
           gist-url: ${{ vars.GIST_URL }}
           badge-path: badge-statements.svg
           badge-text: Coverage (Statements)
-          upload-badge: ${{ github.ref == 'refs/heads/main' }}
+          upload-badge: ${{ steps.branch.outputs.branch == 'main' }}
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v0-beta
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: (success() || failure())
         with:
           result-type: functions
@@ -114,10 +119,10 @@ jobs:
           gist-url: ${{ vars.GIST_URL }}
           badge-path: badge-functions.svg
           badge-text: Coverage (Functions)
-          upload-badge: ${{ github.ref == 'refs/heads/main' }}
+          upload-badge: ${{ steps.branch.outputs.branch == 'main' }}
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v0-beta
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: success() || failure()
         with:
           result-type: branches
@@ -125,4 +130,4 @@ jobs:
           gist-url: ${{ vars.GIST_URL }}
           badge-path: badge-branches.svg
           badge-text: Coverage (Branches)
-          upload-badge: ${{ github.ref == 'refs/heads/main' }}
+          upload-badge: ${{ steps.branch.outputs.branch == 'main' }}

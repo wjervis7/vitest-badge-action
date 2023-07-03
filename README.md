@@ -80,13 +80,13 @@ jobs:
         run: npx vitest --coverage # or run npm script
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v1
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: success() || failure() # run whether steps succeed or not
         with:
           result-type: lines
           gist-token: ${{ secrets.GIST_TOKEN }} # if you want to upload badge to gist
           gist-url: https://gist.github.com/{org/user}/{gist_id}
-          upload-badge: ${{ github.ref == 'refs/heads/main' }}
+          upload-badge: ${{ github.base_ref == 'refs/heads/main' }}
 ```
 
 ### Example 2
@@ -126,7 +126,7 @@ jobs:
         run: npx vitest --coverage # or run npm script
 
       - name: Publish Results Badge
-        uses: wjervis7/vitest-badge-action@v1
+        uses: wjervis7/vitest-badge-action@v1.0.0
         if: success() || failure() # run whether steps succeed or not
         with:
           result-type: statements
@@ -138,9 +138,9 @@ jobs:
           file_pattern: './badge.svg'  
 ```
 
-[buildImg]:https//github.com/wjervis7/azure-devops/actions/workflows/validation.yaml/badge.svg?branch=main
-[buildLnk]:https//github.com/wjervis7/azure-devops/actions/workflows/validation.yaml
-[testLinesImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-lines.svg
-[testStatementsImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-statements.svg
-[testFunctionsImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-functions.svg
-[testBranchesImg]:https//gist.githubusercontent.com/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-branches.svg
+[buildImg]:<https://github.com/wjervis7/vitest-badge-action/actions/workflows/validation.yaml/badge.svg>
+[buildLnk]:<https://github.com/wjervis7/vitest-badge-action/actions/workflows/validation.yaml>
+[testLinesImg]:<https://raw.githubusercontent.com/gist/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-lines.svg>
+[testStatementsImg]:<https://raw.githubusercontent.com/gist/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-statements.svg>
+[testFunctionsImg]:<https://raw.githubusercontent.com/gist/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-functions.svg>
+[testBranchesImg]:<https://raw.githubusercontent.com/gist/wjervis7/b6e7abcadd55f08304a4249fe962f75c/raw/badge-branches.svg>
